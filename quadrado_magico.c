@@ -1,7 +1,8 @@
 //Um quadrado mágico é uma matriz quadrada em que a soma de todas as linhas e de todas as colunas é igual. Exemplo: Se eu somar
 //todos os elementos de uma linha i, o resultad será igual a somar todos os elementos de uma coluna j.
 
-//Para implementar isso no código
+//Para implementar isso no código, usamos um loop que soma todas os elementos de uma linha/coluna, armazena esse valor na variável soma,
+//e para a próxima iteração, ele soma novamente o valor de todos os elementos na próxima linha/coluna, e compara com a soma anterior
 
 #include <stdio.h>
 
