@@ -24,7 +24,7 @@ int main() {
     } else if (delta == 0) {
 
          x1 = -b/(2 * a);
-        printf("Existe apenas um valor x = %.5lf que satisfaz a equacao", x1);
+        printf("existe apenas um valor x = %.5lf que satisfaz a equacao", x1);
 
     } else if (delta < 0) {
 
