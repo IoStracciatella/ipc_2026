@@ -33,7 +33,7 @@ int main() {
     } else if (qtde_de_1 % 2 == 1) {
         printf("Carga util: ");
         
-        //Pra printar a carga eu usei um for que varre todos os valores do array
+        //Pra printar a carga eu usei um loop for que varre todos os valores do array
         for (int i = 0; i < tamanho; i++) {
                 printf("%d ", carga[i]);
         }
