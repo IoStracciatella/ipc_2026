@@ -22,11 +22,17 @@ int main() {
         } else if (cartas[i] == 1) {
             cartas[i] = 11;
         } else if (cartas[i] == 13) {
-            cartas[i] = 10
+            cartas[i] = 10;
         } else if (cartas[i] == 11) {
             cartas[i] = 9;
         } else if (cartas[i] == 12) {
             cartas[i] = 8;
+        }
+    }
+    
+    for (int i = 0; i < 2; i++) {
+        if (cartas[i] == cartas[3]) {
+            cartas[i] = 14;
         }
     }
     
@@ -46,6 +52,22 @@ int main() {
                 maior_carta = cartas[i+1];
                 naipe_maior_carta = naipes[i+1];
             }
+        }
+    }
+    
+    for (int i = 0; i < 2; i++) {
+        if (maior_carta == 14) {
+            maior_carta = cartas[3];
+        } else if (cartas[i] == 12) {
+            cartas[i] = 2;
+        } else if (cartas[i] == 11) {
+            cartas[i] = 1;
+        } else if (cartas[i] == 10) {
+            cartas[i] = 13;
+        } else if (cartas[i] == 9) {
+            cartas[i] = 11;
+        } else if (cartas[i] == 8) {
+            cartas[i] = 12;
         }
     }
     
