@@ -1,29 +1,33 @@
-//Esse código é complicado. Ele é dividido em 4 principais partes: 
+//Bu kod karmaşık. 4 ana parçaya ayrılmış:
 //================================================================================================================
-//PRIMEIRA PARTE: Verficação de input. 
-//Ali o código verifica se os valores inseridos estão dentro dos valores permitidos, se não foi inserida nenhuma carta repetida, etc
-//a lógica pra verifica se uma carta repetida foi inserida é a mais complicada (mas ainda assim é simples): A gente cria um loop pra varrer todos os elementos do array de cartas
-//e depois um outro loop dentro dele. Pra cada iteração do loop maior, a gente varre o array inteiro com o loop menor. Assim, pra cada elemento do array cartas[], a gente
-//varre todos os elementos do array cartas[], pra buscar se tem um igual. Entendeu? Pra cada elemento do array, a gente varre o prórprio array buscando um elemento igual.
+//BİRİNCİ KISIM: Girdi kontrolü.
+//Burada kod, girilen değerlerin izin verilen aralıkta olup olmadığını, tekrar eden kart olup olmadığını vb. kontrol eder.
+//Tekrar eden kart kontrolü en karmaşık kısımdır (ama yine de basittir): kartlar dizisinin tüm elemanlarını dolaşan bir döngü oluştururuz
+//ve onun içinde başka bir döngü. Büyük döngünün her iterasyonunda, küçük döngü ile tüm diziyi dolaşırız. Böylece kartlar[] dizisinin her elemanı için,
+//tüm diziyi dolaşıp aynı değer var mı diye bakarız. Anladın mı? Dizinin her elemanı için, yine aynı diziyi dolaşıp eşleşme ararız.
 //================================================================================================================
-//SEGUNDA PARTE: Calcular a manilha e criar um array de equivalências
-//Nessa parte, a gente cria um array chamado ordem[] cuja ordem dos elementos é a ordem de força das cartas do truco, 3 > 2 > A > K > J > Q > 7 > 6 > 5 > 4, então por exemplo, nesse array 4 tem posição 9,
-//porque é o valor de carta mais forte no truco, 5 tem valor 8, 6 tem valor 7, 7 tem valor 6, e por aí vai. Feito isso, através desse array, a gente consegue facilmente identificar a força de uma carta inserida
-//Pra fazer isso, a gente varre o array da ordem[], buscando pelo valor inserido pelo usuário. Quando o loop encontra o valor inserido no array, ele retorna a posição daquele elemento no array, pra podermos
-//saber qual a força da carta. Com esse array, também, podemos calcular facilmente a manilha, que é dada pela cara que vem depois da vira. Pra isso, a gente varre o array ordem[] em busca da vira, e quando
-//a gente encontra ela, definimos que a manilha = elemento que vem depois do elemento no qual a vira está, logo [i+1]. Caso a vira seja 4, pra não dar erro pelo fato de o próximo index estar fora do tamanho 
-//do array, a gente simplesmente define que se vira = 4 manilha = 3
+//İKİNCİ KISIM: Manilha’yı hesaplamak ve eşdeğerlik dizisi oluşturmak
+//Bu kısımda, ordem[] adında bir dizi oluştururuz ve bu dizideki elemanların sırası truco’daki kartların güç sırasıdır: 3 > 2 > A > K > J > Q > 7 > 6 > 5 > 4.
+//Örneğin bu dizide 4, 9. pozisyondadır çünkü en zayıf karttır; 5’in değeri 8, 6’nın değeri 7, 7’nin değeri 6’dır ve böyle devam eder.
+//Bunu yaptıktan sonra, bu dizi sayesinde girilen bir kartın gücünü kolayca belirleyebiliriz.
+//Bunun için ordem[] dizisini dolaşarak kullanıcının girdiği değeri ararız. Döngü bu değeri bulduğunda, o elemanın dizideki indeksini döndürür,
+//böylece kartın gücünü öğrenmiş oluruz. Bu dizi ile ayrıca manilha’yı da kolayca hesaplayabiliriz; manilha, vira’dan sonra gelen karttır.
+//Bunun için ordem[] dizisinde vira’yı ararız ve bulduğumuzda manilha = o elemandan sonra gelen eleman olur, yani [i+1].
+//Eğer vira 4 ise, dizinin sınırını aşmamak için doğrudan manilha = 3 olarak tanımlarız.
 //================================================================================================================
-//TERCEIRA PARTE: Comparar o tamanho das cartas inseridas pra saber qual é a maior
-//Criamos um loop para verficar qual o maior elemento do array de cartas, usando a lógica simples de criar uma variável pra armazenar o elemento inicial do array, e depois, caso o elemento seguinte seja maior 
-//que o maior elemento atual, o maior elemento atual atualiza para ser o elemento i da lista. Porém, pra cada iteração, temos que converter da ordem simples das cartas pra ordem de força do truco, usando o array
-//ordem[]. Fazemos uma busca no array ordem[] para obtermos a ordem do elemento atual no array ordem[] e assim descobrir a força da carta. Feito isso, o loop roda normal, e compara o elemento atual da lista 
-//convertido na ordem do truco com o maior elemento atual. Se for maior, o maior elemento atual passa a ser o elemento atual da lista (o "i" da lista)
+//ÜÇÜNCÜ KISIM: Girilen kartları karşılaştırarak en büyüğünü bulmak
+//Kartlar dizisindeki en büyük elemanı bulmak için bir döngü oluştururuz. Basit mantık: ilk elemanı tutan bir değişken oluştururuz,
+//sonraki eleman daha büyükse, mevcut en büyük elemanı güncelleriz. Ancak her iterasyonda kartı normal sıralamadan truco’daki güç sırasına çevirmemiz gerekir,
+//bunu da ordem[] dizisini kullanarak yaparız. ordem[] içinde arama yaparak o kartın dizideki konumunu buluruz ve böylece gücünü öğreniriz.
+//Bundan sonra döngü normal şekilde çalışır ve mevcut elemanı (truco sırasına çevrilmiş haliyle) mevcut en büyük elemanla karşılaştırır.
+//Eğer daha büyükse, en büyük eleman güncellenir (yani listenin i’nci elemanı olur).
 //================================================================================================================
-//QUARTA PARTE: Converter o maior elemento de volta pra ordem do truco
-//Convertemos de volta o maior elemento pra ordem do truco usando o array ordem[]. Feito, buscamos qual era o naipe da carta que é o maior elemento. Fazemos isso varrendo o array cartas com um loop, e quando ele 
-//encontrar o valor da maior carta no array de cartas, ele pega a posição dele no array cartas[]. Feito isso, inserimos a posição no array naipes[] pra descobrir qual o naipe correspondente ao da carta.
-//E FINALMENTE, PRINTAMOS A MAIOR CARTA E O NAIPE DA MAIOR CARTA. QUE EXERCÍCIO INFERNAL. MEU DEUS.
+//DÖRDÜNCÜ KISIM: En büyük elemanı tekrar truco sırasına çevirmek
+//En büyük elemanı ordem[] dizisini kullanarak tekrar kart değerine çeviririz.
+//Daha sonra bu kartın hangi naipe ait olduğunu buluruz. Bunun için kartlar dizisini bir döngü ile dolaşırız,
+//ve en büyük kartı bulduğumuzda onun kartlar[] dizisindeki indeksini alırız.
+//Bunu yaptıktan sonra bu indeksi naipes[] dizisinde kullanarak kartın uygun naipini buluruz.
+//VE SONUNDA, EN BÜYÜK KARTI VE ONUN NAİPİNİ YAZDIRIRIZ. NE LANET BİR EGZERSİZ. ALLAHIM.
 
 #include <stdio.h>
 
@@ -31,13 +35,13 @@ int main() {
     int cartas[4], naipes[4], ordem[10], manilha, carta_atual, naipe_maior;
     int carta_maior = 0;
 
-    // ======== Verificações de Input ========
+    // ======== Girdi Kontrolleri ========
 
-    for (int i = 0; i < 4; i++) { //Preenchendo o array
+    for (int i = 0; i < 4; i++) { //Diziyi dolduruyoruz
         scanf("%d", &cartas[i]);
         scanf("%d", &naipes[i]);
 
-        if (cartas[i] > 7 && cartas[i] < 11) { //Verificamos se as cartas tem valores permitidos
+        if (cartas[i] > 7 && cartas[i] < 11) { //Kartların izin verilen değerlerde olup olmadığını kontrol ediyoruz
             printf("Entrada invalida");
             return 0;
         } else if (cartas[i] > 13 || cartas[i] <= 0) {
@@ -49,7 +53,7 @@ int main() {
         }
     }
 
-    for (int i = 0; i < 3; i++) { //Verificamos se tem alguma carta repetida
+    for (int i = 0; i < 3; i++) { //Tekrar eden kart var mı kontrol ediyoruz
         for (int j = i+1; j < 3; j++) {
             if (cartas[i] == cartas[j] && naipes[i] == naipes[j]) {
                 printf("Entrada invalida.");
@@ -59,9 +63,9 @@ int main() {
         }
     }
     
-    // ======== Cálculo Da Manilha ========
+    // ======== Manilha Hesaplama ========
 
-    //Atribuimos valores pras posições do array de conversão
+    //Dönüşüm dizisinin pozisyonlarına değer atıyoruz
     ordem[0] = 4;
     ordem[1] = 5;
     ordem[2] = 6;
@@ -73,50 +77,50 @@ int main() {
     ordem[8] = 2;
     ordem[9] = 3;
 
-    for (int i = 0; i < 10; i++) { //Definimos que a manilha é a carta na posição depois da vira
+    for (int i = 0; i < 10; i++) { //Manilha’nın vira’dan sonraki kart olduğunu belirliyoruz
         if (cartas[3] == ordem[i] && i != 9) {
             manilha = ordem[i+1];
             break;
-        } else if (i == 9) { //Se sair fora do index do array, a gente atribui o valor 4
+        } else if (i == 9) { //Dizi sınırını aşarsak 4 atıyoruz
             manilha = 4;
         }
     }
 
     printf("manilha %d", manilha);    
 
-    // ======== Ordenação de Força ========
+    // ======== Güce Göre Sıralama ========
 
-    for (int i = 0; i < 3; i++) { //Nesse loop a gente verifica se alguma das cartas inseridas é a manilha. Se alguma das cartas for, pronto, a gente imprime que ela é a carta mais forte e termina o programa
+    for (int i = 0; i < 3; i++) { //Kartlardan biri manilha mı kontrol ediyoruz
         if (cartas[i] == manilha && naipes[i] == naipes[3]) {
             printf("%d %d", cartas[i], naipes[i]);
             return 0;
         } 
     }
 
-    carta_maior = 0; //Variável pra armazenar o maior elemento atual das cartas
+    carta_maior = 0; //Şu ana kadar bulunan en büyük kartı saklayan değişken
 
-    for (int i = 0; i < 3; i++) { //Esse loop converte o elemento atual da ordem do truco pra ordem de força, e depois compara se o elemento é maior ou menor que o maior elemento atual
+    for (int i = 0; i < 3; i++) { //Kartı güç sırasına çevirip karşılaştırıyoruz
         for (int j = 0; j < 10; j++) {
             if (cartas[i] == ordem[j]) {
                 carta_atual = j;
-                break; //ESSE BREAK É ESSENCIAL PRA NÃO DEIXAR A VERFICAÇÃO FICAR RODANDO SE O CÓDIGO JÁ TIVER ENCONTRADO O VALOR EQUIVALENTE
+                break; //BU BREAK ÇOK ÖNEMLİ, DEĞER BULUNDUKTAN SONRA GEREKSİZ DÖNGÜYÜ ÖNLER
             }
         }
 
-        if (carta_maior < carta_atual) { //Se a carta atual for maior que a maior carta atual, a maior carta atual passa a ser a carta atual
+        if (carta_maior < carta_atual) { //Eğer mevcut kart daha büyükse güncelliyoruz
             carta_maior = carta_atual;
         }
     }
 
-    //Converter o valor da carta maior da sequência crescente pra sequência do truco
-    for (int i = 0; i < 10; i++) { //Aqui a gente volta o valor da ordem de força pra ordem do truco
+    //En büyük kartı tekrar truco sırasına çeviriyoruz
+    for (int i = 0; i < 10; i++) {
         if (carta_maior == i) {
             carta_maior = ordem[i];
             break;
         }
     }
 
-    for (int i = 0; i < 3; i++) { //Encontramos qual o naipe correspondente a maior carta
+    for (int i = 0; i < 3; i++) { //En büyük karta ait naipi buluyoruz
         if (carta_maior == cartas[i]) {
             naipe_maior = naipes[i];
         }
