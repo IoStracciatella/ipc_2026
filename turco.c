@@ -33,11 +33,11 @@ int main() {
 
     // ======== Verificações de Input ========
 
-    for (int i = 0; i < 4; i++) {
+    for (int i = 0; i < 4; i++) { //Preenchendo o array
         scanf("%d", &cartas[i]);
         scanf("%d", &naipes[i]);
 
-        if (cartas[i] > 7 && cartas[i] < 11) {
+        if (cartas[i] > 7 && cartas[i] < 11) { //Verificamos se as cartas tem valores permitidos
             printf("Entrada invalida");
             return 0;
         } else if (cartas[i] > 13 || cartas[i] <= 0) {
@@ -49,7 +49,7 @@ int main() {
         }
     }
 
-    for (int i = 0; i < 3; i++) {
+    for (int i = 0; i < 3; i++) { //Verificamos se tem alguma carta repetida
         for (int j = i+1; j < 3; j++) {
             if (cartas[i] == cartas[j] && naipes[i] == naipes[j]) {
                 printf("Entrada invalida.");
@@ -61,6 +61,7 @@ int main() {
     
     // ======== Cálculo Da Manilha ========
 
+    //Atribuimos valores pras posições do array de conversão
     ordem[0] = 4;
     ordem[1] = 5;
     ordem[2] = 6;
@@ -72,11 +73,11 @@ int main() {
     ordem[8] = 2;
     ordem[9] = 3;
 
-    for (int i = 0; i < 10; i++) {
+    for (int i = 0; i < 10; i++) { //Definimos que a manilha é a carta na posição depois da vira
         if (cartas[3] == ordem[i] && i != 9) {
             manilha = ordem[i+1];
             break;
-        } else if (i == 9) {
+        } else if (i == 9) { //Se sair fora do index do array, a gente atribui o valor 4
             manilha = 4;
         }
     }
@@ -85,37 +86,37 @@ int main() {
 
     // ======== Ordenação de Força ========
 
-    for (int i = 0; i < 3; i++) {
+    for (int i = 0; i < 3; i++) { //Nesse loop a gente verifica se alguma das cartas inseridas é a manilha. Se alguma das cartas for, pronto, a gente imprime que ela é a carta mais forte e termina o programa
         if (cartas[i] == manilha && naipes[i] == naipes[3]) {
             printf("%d %d", cartas[i], naipes[i]);
             return 0;
         } 
     }
 
-    carta_maior = 0;
+    carta_maior = 0; //Variável pra armazenar o maior elemento atual das cartas
 
-    for (int i = 0; i < 3; i++) {
+    for (int i = 0; i < 3; i++) { //Esse loop converte o elemento atual da ordem do truco pra ordem de força, e depois compara se o elemento é maior ou menor que o maior elemento atual
         for (int j = 0; j < 10; j++) {
             if (cartas[i] == ordem[j]) {
                 carta_atual = j;
-                break;
+                break; //ESSE BREAK É ESSENCIAL PRA NÃO DEIXAR A VERFICAÇÃO FICAR RODANDO SE O CÓDIGO JÁ TIVER ENCONTRADO O VALOR EQUIVALENTE
             }
         }
 
-        if (carta_maior < carta_atual) {
+        if (carta_maior < carta_atual) { //Se a carta atual for maior que a maior carta atual, a maior carta atual passa a ser a carta atual
             carta_maior = carta_atual;
         }
     }
 
     //Converter o valor da carta maior da sequência crescente pra sequência do truco
-    for (int i = 0; i < 10; i++) {
+    for (int i = 0; i < 10; i++) { //Aqui a gente volta o valor da ordem de força pra ordem do truco
         if (carta_maior == i) {
             carta_maior = ordem[i];
             break;
         }
     }
 
-    for (int i = 0; i < 3; i++) {
+    for (int i = 0; i < 3; i++) { //Encontramos qual o naipe correspondente a maior carta
         if (carta_maior == cartas[i]) {
             naipe_maior = naipes[i];
         }
