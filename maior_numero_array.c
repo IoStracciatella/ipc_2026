@@ -17,7 +17,7 @@ int main() {
         }
     }
 
-    printf("%d", maior_numero);
+    printf("o maior numero eh %d", maior_numero);
 
     return 0;
 }
