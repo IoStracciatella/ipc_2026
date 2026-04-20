@@ -1,4 +1,4 @@
-//Esse código é complicado. Ele é dividido em 3 principais partes: 
+//Esse código é complicado. Ele é dividido em 4 principais partes: 
 //================================================================================================================
 //PRIMEIRA PARTE: Verficação de input. 
 //Ali o código verifica se os valores inseridos estão dentro dos valores permitidos, se não foi inserida nenhuma carta repetida, etc
