@@ -33,7 +33,7 @@ int main() {
 
     // ======== Verificações de Input ========
 
-    for (int i = 0; i < 4; i++) { //Preenchendo o array
+    for (int i = 0; i < 4; i++) {  //Preenchendo o array
         scanf("%d", &cartas[i]);
         scanf("%d", &naipes[i]);
 
@@ -80,17 +80,23 @@ int main() {
         } else if (i == 9) { //Se sair fora do index do array, a gente atribui o valor 4
             manilha = 4;
         }
-    }
-
-    printf("manilha %d", manilha);    
+    }   
 
     // ======== Ordenação de Força ========
+    
+    int menor_naipe = 4;
 
     for (int i = 0; i < 3; i++) { //Nesse loop a gente verifica se alguma das cartas inseridas é a manilha. Se alguma das cartas for, pronto, a gente imprime que ela é a carta mais forte e termina o programa
-        if (cartas[i] == manilha && naipes[i] == naipes[3]) {
-            printf("%d %d", cartas[i], naipes[i]);
-            return 0;
+        if (cartas[i] == manilha) {
+            if (menor_naipe > naipes[i]) { //Se tiver mais de uma manilha, a gente desempata por naipe
+                menor_naipe = naipes[i]; 
+            }
         } 
+    }
+    
+    if (menor_naipe != 4) { //A gente só vai imprimir os valores de manilha se alguma carta tiver sido manilha
+        printf("[%d] [%d]", manilha, menor_naipe);
+        return 0;
     }
 
     carta_maior = 0; //Variável pra armazenar o maior elemento atual das cartas
