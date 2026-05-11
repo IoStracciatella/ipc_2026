@@ -1,5 +1,5 @@
 // Fiz esse código pelo celular
-// No loop for é n+2 pra corrigir o fato que o < faz ele parar 2 índice antes do que deveria, porque na matemática o somatório da soma de Riemann vai de 0 até n inclusive, e como aqui a gente usa < e começa e termina o índice em n-1, a gentr tem que corrigir
+// No loop for é n+2 pra corrigir o fato que o < faz ele parar 2 índice antes do que deveria, porque na matemática o somatório da soma de Riemann vai de 0 até n inclusive (intervalo fechado), e como aqui a gente usa < e começa e termina o índice em n-1, a gente tem que corrigir
 
 
 #include <stdio.h>
