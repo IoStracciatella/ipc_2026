@@ -1,4 +1,10 @@
 // Fiz esse código pelo celular
+/*
+O funcionamento é simples: O código só simula a fórmula da soma de riemann. O única sacada que tina que ter aqui que não é tão óbvia é que 
+o f(x) na fórmula equivale a altura de cada retângulo. Pra calcular isso, você tem que calcular o valor da função quadrática no ponto centro
+de cada retângulo no eixo x. Ou seja, você tem que descobrir qual a largura de cada retângulo e ir calculando o y pra cada x no centro de cada
+retâgulo. Você sabe qual a largure de cada rertângulo através do delta
+*/
 
 #include <stdio.h>
 
