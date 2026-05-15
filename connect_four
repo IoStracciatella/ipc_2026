@@ -1,0 +1,15 @@
+#include <stdio.h>
+
+int main() {
+    struct jogador{
+        char nome[50];
+        char peca;
+    } jogadores[2];
+    
+    for (int i = 0; i < 2; i++) {
+        scanf("%s", jogadores[i].nome);
+        scanf("%c", &jogadores[i].peca);
+    }
+
+    return 0;
+}
