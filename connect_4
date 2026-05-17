@@ -1,0 +1,141 @@
+#include <stdio.h>
+
+int main() {
+    struct jogador{
+        char nome[50];
+        char peca;
+    } jogadores[2];
+    
+    for (int i = 0; i < 2; i++) {
+        scanf("%s", jogadores[i].nome);
+        scanf(" %c", &jogadores[i].peca);
+    }
+
+    for (int i = 0; i < 2; i++) {
+        if (jogadores[i].peca == '0') {
+            printf("Entrada invalida.");
+            return 0;
+        }
+    }
+
+    int pos, turno = 1, cont = 0, vencedor = 0, tabuleiro[6][7];
+
+    //Inicializando a matriz do tabuleiro em zero em todas as posições
+    for (int i = 0; i < 6; i++) {
+        for (int j = 0; j < 7; j++) {
+            tabuleiro[i][j] = 0;
+        }
+    }
+
+    while (turno < 3) {
+        scanf("%d", &pos);
+        pos--; //Subtraímos 1 da posição pra compensar a diferença do index do array (que começa em 0) e a posição do tabuleiro (que começa em 1)
+
+        //============== INSERINDO AS PEÇAS NO TABULEIRO ==============
+
+        if (pos > 7) { 
+            printf("Entrada invalida.");
+            return 0;
+        }
+
+        for (int i = 0; i < 6; i++) {
+            if (tabuleiro[i][pos] != 0 && i == 0) {
+                printf("jogada invalida\n");
+                return 0;
+                //scanf("%d", &pos); vou usar isso depois quando eu for subir pro github (comenta o return 0)
+                //i--;
+            } else if (tabuleiro[i][pos] != 0) {
+                tabuleiro[i-1][pos] = turno;
+                break;
+            } else if (i == 5 && tabuleiro[i][pos] == 0) {
+                tabuleiro[i][pos] = turno;
+            }
+        }
+
+        //============== VERIFICAÇÃO SE ALGUM DOS JOGADORES GANHOU ==============
+
+        //Horizontal
+        for (int k = 1; k < 3; k++) {
+            for (int i = 0; i < 6; i++) {
+                for (int j = 0; j < 7; j++) {
+                    cont++;
+                    if (tabuleiro[i][j] != k) {
+                        cont = 0;
+                    }
+
+                    if (cont > 3) {
+                        if (k == 1) {
+                            vencedor = 1;
+                        } else if (k == 2) {
+                            vencedor = 2;
+                        }
+                    }
+                }
+            }
+        }
+
+        //Vertical
+        for (int k = 1; k < 3; k++) {
+            for (int i = 0; i < 7; i++) {
+                for (int j = 0; j < 6; j++) {
+                    cont++;
+                    if (tabuleiro[j][i] != k) {
+                        cont = 0;
+                    }
+
+                    if (cont > 3) {
+                        if (k == 1) {
+                            vencedor = 1;
+                        } else if (k == 2) {
+                            vencedor = 2;
+                        }
+                    }
+                }
+            }
+        }
+
+
+
+        //============== CASO ALGUM JOGADOR TENHA GANHO ==============
+
+        if (vencedor != 0) {
+            for (int i = 0; i < 6; i++) {
+                for (int j = 0; j < 7; j++) {
+                    if (tabuleiro[i][j] == 0) {
+                        printf("0 ");
+                    } else if (tabuleiro[i][j] == 1) {
+                        printf("%c ", jogadores[0].peca);
+                    } else if (tabuleiro[i][j] == 2) {
+                        printf("%c ", jogadores[1].peca);
+                    }
+                }
+                printf("\n");
+            }
+
+            if (vencedor == 1) {
+                printf("%s ganhou!", jogadores[0].nome);
+            } else if (vencedor == 2) {
+                printf("%s ganhou!", jogadores[1].nome);
+            }
+
+            return 0;
+        }
+
+        //============== MUDANÇA DE TURNO (ALTERNA QUAL JOGADOR ESTÁ JOGANDO) ==============
+
+        if (turno == 1) {
+            turno = 2;
+        } else if (turno == 2) {
+            turno = 1;
+        }
+        
+        for (int i = 0; i < 6; i++) {
+            for (int j = 0; j < 7; j++) {
+                printf("%d ", tabuleiro[i][j]);
+            }
+            printf("\n");
+        }
+    }
+
+    return 0;
+}
