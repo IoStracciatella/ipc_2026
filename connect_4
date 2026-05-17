@@ -18,7 +18,7 @@ int main() {
         }
     }
 
-    int pos, turno = 1, cont = 0, vencedor = 0, tabuleiro[6][7];
+    int pos, turno = 1, cont = 0, vencedor = 0, emp = 0, tabuleiro[6][7];
 
     //Inicializando a matriz do tabuleiro em zero em todas as posições
     for (int i = 0; i < 6; i++) {
@@ -40,7 +40,7 @@ int main() {
 
         for (int i = 0; i < 6; i++) {
             if (tabuleiro[i][pos] != 0 && i == 0) {
-                printf("jogada invalida\n");
+                printf("Entrada invalida.\n");
                 return 0;
                 //scanf("%d", &pos); vou usar isso depois quando eu for subir pro github (comenta o return 0)
                 //i--;
@@ -74,12 +74,15 @@ int main() {
             }
         }
 
+        cont = 0;
+
         //Vertical
         for (int k = 1; k < 3; k++) {
             for (int i = 0; i < 7; i++) {
                 for (int j = 0; j < 6; j++) {
                     cont++;
                     if (tabuleiro[j][i] != k) {
+                        //printf("%d\n", cont);
                         cont = 0;
                     }
 
@@ -91,10 +94,111 @@ int main() {
                         }
                     }
                 }
+                
+                cont = 0;
             }
         }
 
+        //================== Diagonais ========================
 
+        //Diagonal 1
+        for (int k = 1; k < 3; k++) {
+            for (int j = 0; j < 7; j++) {
+                for (int i = 0; i < 6; i++) {
+                    cont++;
+
+                    if (tabuleiro[i+j][i] != k) {
+                        cont = 0;
+                    }
+
+                    if (cont > 3) {
+                        if (k == 1) {
+                            vencedor = 1;
+                        } else if (k == 2) {
+                            vencedor = 2;
+                        }
+                    }
+                }
+
+                cont = 0;
+            }
+
+            for (int j = 0; j < 7; j++) {
+                for (int i = 0; i < 6; i++) {
+                    cont++;
+
+                    if (tabuleiro[i][i+j] != k) {
+                        cont = 0;
+                    }
+
+                    if (cont > 3) {
+                        if (k == 1) {
+                            vencedor = 1;
+                        } else if (k == 2) {
+                            vencedor = 2;
+                        }
+                    }
+                }
+
+                cont = 0;
+            }
+        }
+
+        //Diagonal 2
+        for (int k = 1; k < 3; k++) {
+            for (int j = 6; j > 0; j--) {
+                for (int i = 0; i < 7; i++) {
+                    cont++;
+
+                    if (tabuleiro[i][j-i] != k) {
+                        cont = 0;
+                    }
+
+                    if (cont > 3) {
+                        if (k == 1) {
+                            vencedor = 1;
+                        } else if (k == 2) {
+                            vencedor = 2;
+                        }
+                    }
+                }
+
+                cont = 0;
+            }
+        }
+
+        //====================================================
+
+        //Verificar empate
+        if (vencedor == 0) {
+            for (int i = 0; i < 6; i++) {
+                for (int j = 0; j < 7; j++) {
+                    if (tabuleiro[i][j] != 0) {
+                        emp++;
+                    } else {
+                        emp = 0;
+                    }
+                }
+            }
+
+            if (emp > 41) {
+                for (int i = 0; i < 6; i++) {
+                    for (int j = 0; j < 7; j++) {
+                        if (tabuleiro[i][j] == 0) {
+                            printf("0 ");
+                        } else if (tabuleiro[i][j] == 1) {
+                            printf("%c ", jogadores[0].peca);
+                        } else if (tabuleiro[i][j] == 2) {
+                            printf("%c ", jogadores[1].peca);
+                        }
+                    }
+                    printf("\n");
+                }
+
+                printf("Empate!");
+                return 0;
+            }
+        }
 
         //============== CASO ALGUM JOGADOR TENHA GANHO ==============
 
