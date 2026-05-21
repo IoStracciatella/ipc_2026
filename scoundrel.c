@@ -10,7 +10,7 @@ int main() {
     struct carta cartas[44];
     int indice_carta = 0, cont = 15;
 
-    //========================= PREENCHENDO A MATRIZ DE CARTAS COM OS NÚMEROS E NAIPES =========================
+    //=====
 
     for (int i = 0; i < 4; i++) {
         if (i > 1) {
