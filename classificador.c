@@ -1,6 +1,3 @@
-//FINALIZAR ATÉ SEGUNDA
-//email marina
-
 #include <stdio.h>
 
 struct atleta {
