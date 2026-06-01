@@ -1,3 +1,5 @@
+//FINALIZAR ATÉ SEGUNDA
+
 #include <stdio.h>
 
 struct atleta {
