@@ -1,4 +1,4 @@
-// Marinaaaaaaaaaaaaaaaaa
+// O código tem um leve
 
 #include <stdio.h>
 
