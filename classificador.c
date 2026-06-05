@@ -1,3 +1,5 @@
+// Marinaaaaaaaaaaaaaaaaa
+
 #include <stdio.h>
 
 // Criando um struct pra definir as propriedades do atleta, tempo em segundos, ms e n de faltas
