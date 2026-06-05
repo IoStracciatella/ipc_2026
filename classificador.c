@@ -1,5 +1,5 @@
 // O código tem um leve problema na hora de classificar os atletas, mas passou em todos os casos teste 
-// Vendo esse código da pra entender bem como funciona uma função que retorna mais de um valor
+// Lendo esse código da pra entender bem como funciona uma função que retorna mais de um valor
 // Também da pra entender bem como é chamar uma função dentro de outra, e como é fazer um ponteiro apontar para outro ponteiro
 
 #include <stdio.h>
