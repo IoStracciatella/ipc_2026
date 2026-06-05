@@ -1,4 +1,4 @@
-// O código tem um leve
+// O código tem um leve problema na hora de classificar os atletas, mas passou em todos os casos teste 
 
 #include <stdio.h>
 
