@@ -1,5 +1,5 @@
-// A lógica é ir testando: Qual o maior valor que cabe dentro desse número? E então subtraindo esse valor, e testando de novo, com os valores de cada numeral romano.
-// E cada vez que tal valor couber dentro do número, é colocado o caractere correspondente a ele na string "letras", que contém o número em algarismos romanos
+// A lógica é ir testando: Qual o maior valor que cabe dentro do número inserido? E então, ir subtraindo esse valor, e testando de novo, com os valores de cada numeral romano.
+// E cada vez que tal valor couber dentro do número, é colocado o caractere correspondente a ele na string letras[], que contém o número em algarismos romanos. Por último a gente imprime.
 
 #include <stdio.h>
 
