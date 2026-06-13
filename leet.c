@@ -31,6 +31,10 @@ int main() {
                 v[i] = '0';
                 break;
 
+            case 't':
+                v[i] = '7';
+                break;
+
             default:
                 v[i] = toupper(v[i]);
                 break;
