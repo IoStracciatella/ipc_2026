@@ -1,18 +1,17 @@
-// O loop vai até numero - 1 porque na operação de fatorial não multiplicamos o número por ele mesmo
+// O loop começa em numero - 1 e vai até numero 1 porque na operação de fatorial não multiplicamos o número por ele mesmo
 
 #include <stdio.h>
 
-int main () {
-    int numero, resultado;
+int main() {
+    int numero, i;
+    
     scanf("%d", &numero);
-
-    resultado = numero;
-
-    for (int i = numero-1; i > 0; i--) {
-        resultado = resultado * i;
+    
+    for (i = numero - 1; i > 1; i--) {
+        numero = numero * i;
     }
-
-    printf("%d", resultado);
-
+    
+    printf("%d", numero);
+    
     return 0;
 }
